@@ -1,0 +1,49 @@
+@-moz-document domain("boards.4chan.org") {
+
+.sideArrows, #header-bar, .boardTitle, .abovePostForm, .belowLeaderboard, .aboveMidAd, .qr-link-container, #blotter, hr, .summary, .bottomCtrl, .navLinks, #absbot, .postInfo > input {
+    display: none !important;
+}
+
+body {
+    background: url(http://www2.2ch.net/ba.gif) !important;
+}
+
+#bannerCnt {
+    margin-bottom: 32px !important;
+    margin-top: 0px !important;
+    background: #EFEFEF !important;
+    padding: 8px !important;
+    border-left: solid 1px #BFBFBF !important;
+    border-top: solid 1px #BFBFBF !important;
+    border-right: solid 1px #5A5A5A !important;
+    border-bottom: solid 1px #5A5A5A !important;
+}
+
+.postContainer {
+    background: #EFEFEF !important;
+    border-left: solid 1px #BFBFBF !important;
+    border-top: solid 1px #BFBFBF !important;
+    border-right: solid 1px #5A5A5A !important;
+    border-bottom: solid 1px #5A5A5A !important;
+    clear: both !important;
+    width: 94% !important;
+    margin-left: calc(3% - 8px) !important;
+    margin-bottom: 24px !important;
+    padding: 8px !important;
+}
+
+.post {
+    background: #EFEFEF !important;
+    border-left: solid 1px #474747 !important;
+    border-top: solid 1px #474747 !important;
+    border-right: solid 1px #D8D8D8 !important;
+    border-bottom: solid 1px #D8D8D8 !important;
+    width: calc(100% - 6px) !important;
+    margin: 0 !important;
+}
+
+.op {
+    display: inline-block !important;
+}
+
+}

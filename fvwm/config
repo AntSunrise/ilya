@@ -1,0 +1,323 @@
+# (TODO: get nice cursorset) Set the root cursor
+CursorStyle ROOT	left_ptr
+CursorStyle TITLE	left_ptr
+CursorStyle DEFAULT	left_ptr
+CursorStyle SYS		left_ptr
+CursorStyle MENU	left_ptr
+
+# Name and set workspaces
+DesktopSize		4x1
+DesktopName 0		One
+DesktopName 1		Two
+DesktopName 2		Three
+Desktopname 3		Four
+
+# (TODO: Fix edgescrolling) Change edgescrollin behavior
+EdgeScroll		100 100 wrap
+EdgeResistance		100 100
+EdgeThickness		40
+
+# Spawn windows under cursor
+Style "*"		PositionPlacement UnderMouse,\
+			GrabFocusOff
+
+# Change resize behavior
+Style "*"		NoPPosition,\
+			ResizeOpaque
+
+# Change move behavior
+OpaqueMoveSize		-1
+Emulate			MWM
+HideGeometryWindow	Always
+XorValue		55555
+
+# Change look and feel of transient windows
+Style "*"		DecorateTransient,\
+			DontLowerTransient,\
+			StackTransientParent,\
+			WindowShadeSteps 20,\
+			WindowShadeScrolls
+
+# Give windows rounded corners
+Style "*"		RoundedCornersTop, SlightlyRoundedCorners,\
+			RoundedCornersBottom, SlightlyRoundedCorners
+
+# Set borders and inactive menu colors
+Colorset 1		fg #E8DFD6,\
+			bg #021B21
+# Set active menu colors
+Colorset 2		fg #E8DFD6,\
+			bg #E8DFD6
+# Inactive pager colors
+Colorser 3		fg #032C36,\
+			bg #021B21
+# Active pager colors
+Colorset 4		fg #ff0000,\
+			bg #021B21
+
+# (TODO: Clean this shit) Windows
+DestroyDecor		MyDecor
+AddToDecor		MyDecor
++ TitleStyle		RightJustified Height 18
++ ButtonStyle		2 ActiveUp   Vector 6 30x50@3 40x40@3 50x50@3 50x65@4 40x55@3 30x65@3 -- Flat
++ ButtonStyle		2 ActiveDown Vector 6 30x50@3 40x40@3 50x50@3 50x65@4 40x55@3 30x65@3 -- Flat
++ ButtonStyle		2 Inactive   Vector 6 30x50@3 40x40@3 50x50@3 50x65@4 40x55@3 30x65@3 -- Flat
++ ButtonStyle		4 ActiveUp   Vector 6 40x50@3 30x40@3 40x30@3 55x50@4 40x40@3 55x30@3 -- Flat
++ ButtonStyle		4 ActiveDown Vector 6 40x50@3 30x40@3 40x30@3 55x50@4 40x40@3 55x30@3 -- Flat
++ ButtonStyle		4 Inactive   Vector 6 40x50@3 30x40@3 40x30@3 55x50@4 40x40@3 55x30@3 -- Flat
++ ButtonStyle		6 ActiveUp   Vector 6 30x20@3 40x30@3 50x20@3 50x30@4 40x40@3 30x30@3 -- Flat
++ ButtonStyle		6 ActiveDown Vector 6 30x20@3 40x30@3 50x20@3 50x30@4 40x40@3 30x30@3 -- Flat
++ ButtonStyle		6 Inactive   Vector 6 30x20@3 40x30@3 50x20@3 50x30@4 40x40@3 30x30@3 -- Flat
++ TitleStyle		-- Flat
++ BorderStyle		Simple -- NoInset Flat
++ ButtonStyle		All -- UseTitleStyle
+
+Style "*"		UseDecor MyDecor
+Style "*"		Font "xft:gohufont:pixelsize=14"
+Style "*"		NoTitle
+Style "*"		BorderWidth 3, HandleWidth 4
+Style "*"		BorderColorset 1
+Style "*"		HilightBorderColorset 1
+
+# (TODO: Merge with other menu and clean this shit) Menus
+MenuStyle "*"		PopupDelayed, PopupDelay 300, PopdownImmediately
+MenuStyle "*"		PopupOffset 10 100, TitleWarpOff
+MenuStyle "*"		TitleUnderlines2, SeparatorsShort, TrianglesSolid
+MenuStyle "*"		AnimationOff, AutomaticHotkeysOff
+MenuStyle "*"		BorderWidth 3
+MenuStyle "*"		PopupAsSubmenu, HoldSubmenus, SubmenusRight
+MenuStyle "*"		ItemFormat "%|%10.10l%5.5>%|"
+MenuStyle "*"		VerticalItemSpacing 5 5, VerticalTitleSpacing 2 2
+MenuStyle "*"		MenuColorset 1
+MenuStyle "*"		ActiveFore, Hilight3DOff
+MenuStyle "*"		ActiveColorset 2
+MenuStyle "*"		Font "xft:gohufont:size=14"
+MenuStyle "*"		RoundedCornersTop, SlightlyRoundedCorners
+MenuStyle "*"		RoundedCornersBottom, SlightlyRoundedCorners
+
+# Create pager
+Module			FvwmPager *
+
+# No idea
+DestroyModuleConfig	FvwmPager: *
+
+# Change the pager behavior
+Style "FvwmPager"	!Handles,\
+			!Iconifiable,\
+			NoTitle, Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnBottom,\
+			FixedPosition,\
+			FixedSize
+
+# Set the pager geometry
+*FvwmPager:		Geometry 218x34-70-40
+
+# Change pager look
+*FvwmPager:		NoDeskHilight
+*FvwmPager:		NoSeparators
+*FvwmPager:		WindowBorderWidth 1
+#*FvwmPager:		Colorset * 1
+#*FvwmPager:            WindowColorsets 4 3
+*FvwmPager:		Fore #090909
+*FvwmPager:             Back #090909
+*FvwmPager:		Font none
+*FvwmPager:		UseSkipList
+
+# Spawn pager button
+Exec			exec sh /home/kamiru/.scripts/pager/pager_button.sh
+
+# Make the music button static
+Style "pager_button"	!Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnBottom,\
+			FixedPosition,\
+			FixedSize,\
+			PositionPlacement -40p -40p
+
+# Spawn pager button
+Exec                    exec sh /home/kamiru/.scripts/music/music_button.sh
+
+# Make the music button static
+Style "music_button"	!Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnBottom,\
+			FixedPosition,\
+			FixedSize,\
+			PositionPlacement +40p -120p
+
+# Spawn the music popup
+Mouse (sh) 1 W A	Exec exec sh /home/kamiru/.scripts/music/music_popup.sh
+
+# Make the music popup static
+Style "music_popup"	!Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnTop,\
+			FixedPosition,\
+			FixedSize,\
+			PositionPlacement +40p -180p
+
+# Make the albumart static
+Style "feh [1 of 1] - /home/kamiru/Music/*" !Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnTop,\
+			FixedPosition,\
+			FixedSize
+
+# Spawn : clock button
+Exec			exec sh /home/kamiru/.scripts/clock/clock_button.sh
+
+# Make the clock static
+Style "clock_button"	!Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnBottom,\
+			FixedPosition,\
+			FixedSize,\
+			PositionPlacement +40p -40p
+
+# Make notifications static
+Style "notification"	!Handles,\
+			Sticky,\
+			WindowListSkip,\
+			CirculateSkip,\
+			StaysOnTop,\
+			FixedPosition,\
+			FixedSize,\
+			PositionPlacement -40p +0p
+
+#====================================
+#---- (TODO: Find out what this does) Basic Functions
+#====================================
+
+DestroyFunc FvwmDeleteOrDestroy
+AddToFunc   FvwmDeleteOrDestroy
++ H Nop
++ M Nop
++ C Delete
++ D Destroy
+
+DestroyFunc FvwmIconifyOrShade
+AddToFunc   FvwmIconifyOrShade
++ C Thumbnail
+
+DestroyFunc FvwmMaximize
+AddToFunc   FvwmMaximize
++ H Nop
++ M Nop
++ C Maximize $0 $1
+
+DestroyFunc FvwmMoveOrIconify
+AddToFunc   FvwmMoveOrIconify
++ M Move
++ D Iconify
+
+DestroyFunc FvwmWindowShade
+AddToFunc   FvwmWindowShade
++ D WindowShade $0
+
+#====================================
+#---- (TODO: Add more keybinds) Keyboard
+#====================================
+
+# Fvwm
+Key F1		A M Menu MenuFvwmRoot
+Key Tab		A M WindowList Root c c NoDeskSort, SelectOnRelease Meta_L
+
+# MPD
+Key Up		A C Exec exec mpc prev
+Key Down	A C Exec exec mpc next
+Key Left	A C Exec exec mpc seek -5
+Key Right	A C Exec exec mpc seek +5
+Key Space	A C Exec exec sh /home/kamiru/.scripts/notify/mpd_toggle.sh
+
+# Window Management
+Key Q		W 4 Close
+
+#====================================
+#---- (TODO: Fix dragging and menu, and add more keybinds) Mouse
+#====================================
+
+ClickTime 350
+MoveThreshold 3
+Style * SloppyFocus, MouseFocusClickRaises
+
+Mouse 1 R A Menu FvwmRootMenu
+Mouse 3 R A Menu FvwmWindowOpsMenu
+Mouse 1 2 A FvwmDeleteOrDestroy
+Mouse 1 4 A FvwmIconifyOrShade
+Mouse 1 6 A FvwmMaximize 100 100
+Mouse 2 6 A FvwmMaximize 0 100
+Mouse 3 6 A FvwmMaximize 100 0
+Mouse 1 W 4 FvwmMoveOrIconify
+Mouse 9 W A FvwmMoveOrIconify
+Mouse 1 I A FvwmMoveOrIconify
+Mouse 4 T A FvwmWindowShade True
+Mouse 5 T A FvwmWindowShade False
+
+#====================================
+#---- (TODO: Merge) Menus
+#====================================
+
+DestroyMenu	FvwmRootMenu
+AddToMenu	FvwmRootMenu
+
++ "URxvt"	Exec exec urxvt
++ "" Nop
++ "Launch"	Popup FvwmProgramsMenu
++ "Window"	Popup FvwmFilesMenu
++ "System"	Popup FvwmSettingsMenu
+
+DestroyMenu FvwmProgramsMenu
+AddToMenu   FvwmProgramsMenu
++ "firefox" 	Exec exec firefox
+
+DestroyMenu FvwmDevelopmentMenu
+AddToMenu   FvwmDevelopmentMenu
++ "gvim"          Exec exec gvim
++ "railz"         Exec exec urxvt -name rails -e launchtmux rails
+
+DestroyMenu FvwmGraphicMenu
+AddToMenu   FvwmGraphicMenu
++ "gimp"          Exec exec gimp
++ "mrge"          Exec exec mirage
+
+DestroyMenu FvwmMediaMenu
+AddToMenu   FvwmMediaMenu
++ "mpd"           Exec exec urxvt -name ncmpcpp -e ncmpcpp
+
+DestroyMenu FvwmFilesMenu
+AddToMenu   FvwmFilesMenu
++ "h0me"          Exec exec rox
++ "" Nop
++ "w3"            Exec exec rox /home/kamiru/www
++ "" Nop
++ "d4t4"          Exec exec rox /mnt/data
++ "docs"          Exec exec rox /mnt/data/Dokumente
++ "dloods"        Exec exec rox /mnt/data/Downloads
++ "pr0n"          Exec exec rox /mnt/data/Bilder
++ "tunes"         Exec exec rox /mnt/data/Musik
++ "" Nop
++ "320"           Exec exec rox /mnt/320GB
++ "vid"           Exec exec rox /mnt/320GB/Video
++ "" Nop
++ "toolbx"        Exec exec rox /mnt/TOOLBOX
+
+DestroyMenu FvwmSettingsMenu
+AddToMenu   FvwmSettingsMenu
++ "FVWM Console"  Module FvwmConsole
++ "Help"          Popup FvwmManPagesMenu
++ "" Nop
++ "Restart"       Restart
++ "" Nop
++ "Quit"          Quit
